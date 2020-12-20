@@ -1,5 +1,5 @@
-# WeatherPress.py - A simple, Raspberry Pi based weather station, that posts
-# to a WordPress blog.
+# WeatherCloud.py - A simple, Raspberry Pi based weather station, that sends data
+# to an Azure IoT Hub.
 # ------------------------------------------------------------------------------
 
 import time
@@ -23,8 +23,9 @@ print("{:.3f} °C".format(temperature) + " | {:.3f} %rH".format(humidity))
 s.cancel()
 pi.stop()
 
-# Post the data to a WordPress blog
+# Post the data to an azure IoT Hub
 
+ //TODO repace with IoT Hub
 from wordpress_xmlrpc import Client
 from wordpress_xmlrpc.methods import posts
 from wordpress_xmlrpc import WordPressPost
