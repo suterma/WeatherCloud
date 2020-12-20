@@ -1,7 +1,7 @@
 # Credentials for accessing the Azure Iot Hub
 WordPress:
     # The Device Connection String to connect to the IoT Hub
-    # Exmaple: HostName=<your IoT Hub name>.azure-devices.net;DeviceId=<your device id>;SharedAccessKey=<some value>
+    # In the exmaple below, replace the values in brackets with your own
     # See https://docs.microsoft.com/en-us/cli/azure/ext/azure-cli-iot-ext/iot/hub/device-identity?view=azure-cli-latest#ext_azure_cli_iot_ext_az_iot_hub_device_identity_show_connection_string
     deviceConnectionString: HostName=<your IoT Hub name>.azure-devices.net;DeviceId=<your device id>;SharedAccessKey=<some value>
     # A location description which is appended to each message from this sensor
