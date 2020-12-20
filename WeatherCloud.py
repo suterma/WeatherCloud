@@ -29,7 +29,7 @@ with open("WeatherCloud.config.yml", "r") as configFile:
     config = yaml.safe_load(configFile)
     
 locationDescription = config['Azure']['locationDescription']
-messageText = '{  "measurement": {    "timestamp": ' + str(round(time.time() * 1000))+ ', "locationDescription": ' + locationDescription + ', "temperature": {0:.1f}, "relhumidity": {1:.1f}'.format(temperature, humidity) + ' } } '
+messageText = '{  "measurement": {    "timestamp": ' + str(round(time.time() * 1000))+ ', "locationDescription": ' + locationDescription + ', "temperature": {0:.3f}, "relhumidity": {1:.3f}'.format(temperature, humidity) + ' } } '
 
 # Post the data to an azure IoT Hub
 import os
