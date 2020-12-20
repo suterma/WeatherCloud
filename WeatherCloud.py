@@ -50,7 +50,7 @@ async def main():
 
     # Send a single message
     print("Sending message...")
-    await device_client.send_message(messageText")
+    await device_client.send_message(messageText)
     print("Message successfully sent!")
 
     # finally, disconnect
