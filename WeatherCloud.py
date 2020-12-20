@@ -24,22 +24,21 @@ s.cancel()
 pi.stop()
 
 # Prepare the message
-textHumidity = "Relative Humidity is : %.3f %%rH" %humidity
-textTemperature = "Temperature in Celsius is : %.3f °C" %temperature
-messageText = textHumidity + " " + textTemperature
+import yaml
+with open("WeatherCloud.config.yml", "r") as configFile:
+    config = yaml.safe_load(configFile)
+    
+locationDescription = config['Azure']['locationDescription']
+messageText = '{  "measurement": {    "timestamp": ' + str(round(time.time() * 1000))+ ', "locationDescription": ' + locationDescription + ', "temperature": {0:.1f}, "relhumidity": {1:.1f}'.format(temperature, humidity) + ' } } '
 
 # Post the data to an azure IoT Hub
 import os
 import asyncio
 from azure.iot.device.aio import IoTHubDeviceClient
 
-import yaml
-with open("WeatherCloud.config.yml", "r") as configFile:
-    config = yaml.safe_load(configFile)
-
-
 async def main():
     # Fetch the connection string from the configuration
+    print("Connection to Azure...")
     conn_str = config['Azure']['deviceConnectionString']
 
     # Create instance of the device client using the connection string
