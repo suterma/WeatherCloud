@@ -6,6 +6,9 @@ A simple, Raspberry Pi based weather station, that posts to an [Azure IoT Hub](h
  - `WeatherCloud.py` is the implementation for this project.
  - `RunWeatherCloud.sh` is a script that prepares and runs a single measurement.
  
- # Credits
+## Installation
+https://qrys.ch/a-raspberry-pi-based-weather-station-publishing-to-an-mqtt-topic/#installation
+ 
+# Credits
  - PIBITS: Raspberry Pi and Si7021 sensor example
  - Joan at abyz.me.uk: Si7021 reader and PiGPIO daemon
