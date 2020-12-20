@@ -40,7 +40,7 @@ with open("WeatherCloud.config.yml", "r") as configFile:
 
 async def main():
     # Fetch the connection string from the configuration
-    conn_str = config['deviceConnectionString']
+    conn_str = config['Azure']['deviceConnectionString']
 
     # Create instance of the device client using the connection string
     device_client = IoTHubDeviceClient.create_from_connection_string(conn_str)
