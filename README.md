@@ -1,12 +1,11 @@
-# WeatherPress
-A simple, Raspberry Pi based weather station, that posts to a WordPress blog. See my [blog post](https://qrys.ch/a-raspberry-pi-based-weather-station-posting-to-wordpress/) for details and how to install it.
+# WeatherCloud (This project is in Alpha-Stage!)
 
+A simple, Raspberry Pi based weather station, that posts to an [Azure IoT Hub](https://azure.microsoft.com/en-us/services/iot-hub/). See my [//TODO blog post](https://qrys.ch) for details and how to install it.
 
  - `Si7021.py` is a PiGPIO-based sensor reader
- - `WeatherPress.py` is the implementation for this project.
- - `RunWeatherPress.sh` is a script that prepares and runs a single measurement.
+ - `WeatherCloud.py` is the implementation for this project.
+ - `RunWeatherCloud.sh` is a script that prepares and runs a single measurement.
  
  # Credits
  - PIBITS: Raspberry Pi and Si7021 sensor example
  - Joan at abyz.me.uk: Si7021 reader and PiGPIO daemon
- - Sina Jahangiri: How to use Python to write a post in your WordPress website/blog
