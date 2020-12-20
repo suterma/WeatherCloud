@@ -8,6 +8,17 @@ A simple, Raspberry Pi based weather station, that posts to an [Azure IoT Hub](h
  
 ## Installation
 https://qrys.ch/a-raspberry-pi-based-weather-station-publishing-to-an-mqtt-topic/#installation
+
+    # get git (Not included in the raspian lite version)
+    sudo apt-get install git
+     
+    # clone the WeatherPress repo
+    cd /home/pi
+    git clone git://github.com/suterma/WeatherCloud
+    cd WeatherCloud
+    sudo chmod u+x RunWeatherCloud.sh
+
+
  
 # Credits
  - PIBITS: Raspberry Pi and Si7021 sensor example
