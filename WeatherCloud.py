@@ -23,43 +23,44 @@ print("{:.3f} °C".format(temperature) + " | {:.3f} %rH".format(humidity))
 s.cancel()
 pi.stop()
 
-# Post the data to an azure IoT Hub
-
- //TODO repace with IoT Hub
-from wordpress_xmlrpc import Client
-from wordpress_xmlrpc.methods import posts
-from wordpress_xmlrpc import WordPressPost
-
+# Prepare the message
 textHumidity = "Relative Humidity is : %.3f %%rH" %humidity
 textTemperature = "Temperature in Celsius is : %.3f °C" %temperature
+messageText = textHumidity + " " + textTemperature
 
-print('preparing post...')
+# Post the data to an azure IoT Hub
+import os
+import asyncio
+from azure.iot.device.aio import IoTHubDeviceClient
 
 import yaml
-with open("WeatherPress.config.yml", "r") as configFile:
+with open("WeatherCloud.config.yml", "r") as configFile:
     config = yaml.safe_load(configFile)
 
-blog = Client(config['WordPress']['xmlRcpApiUrl'],
-              config['WordPress']['username'],
-              config['WordPress']['password'])
 
-print('posting...')
+async def main():
+    # Fetch the connection string from the configuration
+    conn_str = config['deviceConnectionString']
 
-post = WordPressPost()
-# Create a title with some simple styling classes
-post.title = ("{:.1f} <span class='unity'>°C</span>".format(temperature) +
-              "&nbsp;&nbsp;&nbsp;"+
-              "{:.0f} <span class='unity'>%rH</span>".format(humidity))
-post.content = textTemperature + ' ' + textHumidity
-post.terms_names = {
-        'post_tag': [config['WordPress']['tag']],
-        'category': [config['WordPress']['category']],
-}
-post.id = blog.call(posts.NewPost(post))
-# Always publish these posts
-print('publishing...')
-post.post_status = 'publish'
-blog.call(posts.EditPost(post.id, post))
+    # Create instance of the device client using the connection string
+    device_client = IoTHubDeviceClient.create_from_connection_string(conn_str)
 
-# Report success
-print(post.title + ' publicly posted to ' + config['WordPress']['xmlRcpApiUrl'])
+    # Connect the device client.
+    await device_client.connect()
+
+    # Send a single message
+    print("Sending message...")
+    await device_client.send_message(messageText")
+    print("Message successfully sent!")
+
+    # finally, disconnect
+    await device_client.disconnect()
+
+
+if __name__ == "__main__":
+    # asyncio.run(main())
+
+    # If using Python 3.6 or below, use the following code instead of asyncio.run(main()):
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
+    loop.close()
