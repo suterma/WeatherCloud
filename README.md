@@ -11,6 +11,9 @@ https://qrys.ch/a-raspberry-pi-based-weather-station-publishing-to-an-mqtt-topic
 
     # get git (Not included in the raspian lite version)
     sudo apt-get install git
+    
+    # install the Azure IoT SDK
+    pip3 install azure-iot-device
      
     # clone the WeatherPress repo
     cd /home/pi
