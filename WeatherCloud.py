@@ -32,7 +32,7 @@ with open("WeatherCloud.config.yml", "r") as configFile:
     config = yaml.safe_load(configFile)
     
 locationDescription = config['Azure']['locationDescription']         
-MSG_TXT = '{{"temperature":"{temperature}","humidity":{humidity},"locationDescription":"{locationDescription}"}}'
+MSG_TXT = '{{"temperature":{temperature},"humidity":{humidity},"locationDescription":"{locationDescription}"}}'
 msg_txt_formatted = MSG_TXT.format(temperature=temperature, humidity=humidity, locationDescription=locationDescription)
 
 # Post the message to an azure IoT Hub
