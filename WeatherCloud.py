@@ -31,8 +31,7 @@ import yaml
 with open("WeatherCloud.config.yml", "r") as configFile:
     config = yaml.safe_load(configFile)
     
-locationDescription = config['Azure']['locationDescription']
-timestamp = datetime.datetime.fromtimestamp(time.time()).isoformat()            
+locationDescription = config['Azure']['locationDescription']         
 MSG_TXT = '{"temperature":"{temperature}","humidity":{humidity},"locationDescription":"{locationDescription}"}}'
 msg_txt_formatted = MSG_TXT.format(temperature=temperature, humidity=humidity, locationDescription=locationDescription)
 message = Message(msg_txt_formatted)
