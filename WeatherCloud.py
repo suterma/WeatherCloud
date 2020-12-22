@@ -23,13 +23,16 @@ print("{:.3f} °C".format(temperature) + " | {:.3f} %rH".format(humidity))
 s.cancel()
 pi.stop()
 
-# Prepare the message
+# Prepare the JSON message to send to IoT Hub.
 import yaml
 with open("WeatherCloud.config.yml", "r") as configFile:
     config = yaml.safe_load(configFile)
     
 locationDescription = config['Azure']['locationDescription']
-messageText = '{ "timestamp": "' + str(round(time.time() * 1000)) + '", "locationDescription": "' + locationDescription + '", "temperature": "{0:.3f}", "relhumidity": "{1:.3f}"'.format(temperature, humidity) + ' }'
+timestamp = datetime.datetime.fromtimestamp(time.time()).isoformat()            
+MSG_TXT = '{{"timestamp":"{timestamp}","temperature":"{temperature}","humidity":{humidity},"locationDescription":"{locationDescription}"}}'
+msg_txt_formatted = MSG_TXT.format(timestamp=timestamp, temperature=temperature, humidity=humidity, locationDescription=locationDescription)
+message = Message(msg_txt_formatted)
 
 # Post the data to an azure IoT Hub
 import os
@@ -48,8 +51,8 @@ async def main():
     await device_client.connect()
 
     # Send a single message
-    print("Sending message...")
-    await device_client.send_message(messageText)
+    print( "Sending message: {}".format(message) )
+    await device_client.send_message(message)
     print("Message successfully sent!")
 
     # finally, disconnect
