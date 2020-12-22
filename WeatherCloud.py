@@ -23,7 +23,7 @@ print("{:.3f} °C".format(temperature) + " | {:.3f} %rH".format(humidity))
 s.cancel()
 pi.stop()
 
-# Prepare the JSON message to send to IoT Hub.
+# Prepare the message data
 from datetime import datetime
 timestampIso = datetime.now().isoformat()
 
@@ -34,15 +34,18 @@ with open("WeatherCloud.config.yml", "r") as configFile:
 locationDescription = config['Azure']['locationDescription']         
 MSG_TXT = '{{"temperature":"{temperature}","humidity":{humidity},"locationDescription":"{locationDescription}"}}'
 msg_txt_formatted = MSG_TXT.format(temperature=temperature, humidity=humidity, locationDescription=locationDescription)
+
+# Post the message to an azure IoT Hub
+import os
+import asyncio
+from azure.iot.device.aio import IoTHubDeviceClient, Message
+
+# Create the IoT Hub Message
 message = Message(msg_txt_formatted)
 
 # Add metadata
 message.custom_properties["iothub-creation-time-utc"] = timestampIso
 
-# Post the message to an azure IoT Hub
-import os
-import asyncio
-from azure.iot.device.aio import IoTHubDeviceClient
 
 async def main():
     # Fetch the connection string from the configuration
