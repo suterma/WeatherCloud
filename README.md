@@ -7,7 +7,9 @@ A simple, Raspberry Pi based weather station, that posts to an [Azure IoT Hub](h
  - `RunWeatherCloud.sh` is a script that prepares and runs a single measurement.
  
 ## Installation
-https://qrys.ch/a-raspberry-pi-based-weather-station-publishing-to-an-mqtt-topic/#installation
+This project requires an actual [Si7021 temperature and humidity sensor](https://www.digitec.ch/de/s1/product/adafruit-si7021-sensor-elektronikmodul-6310870). See my [blog post about how to set the SI7021 up with a Rasperry Pi](https://qrys.ch/a-raspberry-pi-based-weather-station-posting-to-wordpress/#setting-up-the-si7021-sensor). 
+
+From there, within an SSH session you can now install this WeatherCloud client.
 
     # get git (Not included in the raspian lite version)
     sudo apt-get install git
@@ -15,11 +17,13 @@ https://qrys.ch/a-raspberry-pi-based-weather-station-publishing-to-an-mqtt-topic
     # install the Azure IoT SDK
     pip3 install azure-iot-device
      
-    # clone the WeatherPress repo
+    # clone the WeatherCloud repo
     cd /home/pi
     git clone git://github.com/suterma/WeatherCloud
     cd WeatherCloud
     sudo chmod u+x RunWeatherCloud.sh
+    
+Now, you need to configure the Iot Hub connection string.    
 
 
  
