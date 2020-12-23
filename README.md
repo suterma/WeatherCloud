@@ -11,16 +11,10 @@ This project requires an actual [Si7021 temperature and humidity sensor](https:/
 
 From there, within an SSH session you can now install this WeatherCloud client.
 
-    # get git (Not included in the raspian lite version)
-    sudo apt-get install git
+    # get git and python3 (Not included in the raspian lite version)
+    sudo apt-get install git python3 python3-pip
     
-    # Installing python3 (if not available, e.g. in Raspian Lite) (currently, by default, the most recent version available is 3.5.3)
-    sudo apt-get install python3
- 
-    # Installing pip (if not available)
-    sudo apt-get install python3-pip
-    
-    # install the Azure IoT SDK
+    # install the Azure IoT device SDK
     pip3 install azure-iot-device
      
     # clone the WeatherCloud repo
