@@ -1,4 +1,4 @@
-# WeatherCloud (This project is in Alpha-Stage!)
+# WeatherCloud
 
 A simple, Raspberry Pi based weather station, that posts to an [Azure IoT Hub](https://azure.microsoft.com/en-us/services/iot-hub/). See my [//TODO blog post](https://qrys.ch) for details and how to install it. This project is based a former work on https://github.com/suterma/WeatherCloud
 
@@ -14,6 +14,12 @@ From there, within an SSH session you can now install this WeatherCloud client.
     # get git (Not included in the raspian lite version)
     sudo apt-get install git
     
+    # Installing python3 (if not available, e.g. in Raspian Lite) (currently, by default, the most recent version available is 3.5.3)
+    sudo apt-get install python3
+ 
+    # Installing pip (if not available)
+    sudo apt-get install python3-pip
+    
     # install the Azure IoT SDK
     pip3 install azure-iot-device
      
@@ -23,10 +29,19 @@ From there, within an SSH session you can now install this WeatherCloud client.
     cd WeatherCloud
     sudo chmod u+x RunWeatherCloud.sh
     
-Now, you need to configure the Iot Hub connection string.    
+Now, you need to [register this new device with Azure IoT hub](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-python-python-device-management-get-started#register-a-new-device-in-the-iot-hub) and configure the resulting "IoT Hub device connection string" in the WeatherCloud.config.yml file:
 
-
+    sudo nano WeatherCloud.config.yml
+    
+ ## Run
  
-# Credits
- - PIBITS: Raspberry Pi and Si7021 sensor example
- - Joan at abyz.me.uk: Si7021 reader and PiGPIO daemon
+    # Test out the weather station:
+    ./RunWeatherCloud.sh
+    
+You can also have it post data perodically, e.g. using the crontab file:
+
+    crontab -e
+    # Add a line similar to this one at the end
+    # */15 * * * * cd /home/pi/WeatherCloud && ./RunWeatherCloud.sh
+    
+This will send a new message every 15 minutes
