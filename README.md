@@ -23,7 +23,7 @@ From there, within an SSH session you can now install this WeatherCloud client.
     cd WeatherCloud
     sudo chmod u+x RunWeatherCloud.sh
     
-Now, you need to [register this new device with Azure IoT hub](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-python-python-device-management-get-started#register-a-new-device-in-the-iot-hub) and configure the resulting "IoT Hub device connection string" in the WeatherCloud.config.yml file:
+Now, you need to [register this new device with Azure IoT hub](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-python-python-device-management-get-started#register-a-new-device-in-the-iot-hub) and configure the resulting "IoT Hub device connection string" in the WeatherCloud.config.yml file. Also make sure to set a unique device id.
 
     sudo nano WeatherCloud.config.yml
     
