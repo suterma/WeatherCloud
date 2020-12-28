@@ -7,7 +7,7 @@ A simple, Raspberry Pi based weather station, that posts to an [Azure IoT Hub](h
  - `RunWeatherCloud.sh` is a script that prepares and runs a single measurement.
  
 ## Installation
-This project requires an actual [Si7021 temperature and humidity sensor](https://www.digitec.ch/de/s1/product/adafruit-si7021-sensor-elektronikmodul-6310870). See my [blog post about how to set the SI7021 up with a Rasperry Pi](https://qrys.ch/a-raspberry-pi-based-weather-station-posting-to-wordpress/#setting-up-the-si7021-sensor). 
+This project requires an actual [Si7021 temperature and humidity sensor](https://www.digitec.ch/de/s1/product/adafruit-si7021-sensor-elektronikmodul-6310870). See my [blog post about how to set the Si7021 up with a Rasperry Pi](https://qrys.ch/a-raspberry-pi-based-weather-station-posting-to-wordpress/#setting-up-the-si7021-sensor). 
 
 From there, within an SSH session you can now install this WeatherCloud client.
 
