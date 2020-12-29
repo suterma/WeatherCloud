@@ -37,6 +37,7 @@ You can also have it post data perodically, e.g. using the crontab file:
     crontab -e
     
 Add a line similar to this one at the end
+
     */15 * * * * cd /home/pi/WeatherCloud && ./RunWeatherCloud.sh
     
 This will send a new message every 15 minutes
