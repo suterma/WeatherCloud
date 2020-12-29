@@ -46,7 +46,8 @@ message = Message(msg_txt_formatted)
 
 # Add metadata
 message.custom_properties["iothub-creation-time-utc"] = timestampIso
-
+message.content_encoding = "utf-8"
+message.content_type = "application/json"
 
 async def main():
     # Fetch the connection string from the configuration
