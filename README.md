@@ -41,3 +41,9 @@ Add a line similar to this one at the end
     */15 * * * * cd /home/pi/WeatherCloud && ./RunWeatherCloud.sh
     
 This will send a new message every 15 minutes
+
+## Monitor
+
+To observe individual incoming messsages, the only option is to monitor them on the CLI:
+
+    az iot hub monitor-events --hub-name {Your IoT Hub name}
