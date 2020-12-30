@@ -49,30 +49,20 @@ message.custom_properties["iothub-creation-time-utc"] = timestampIso
 message.content_encoding = "utf-8"
 message.content_type = "application/json"
 
-async def main():
-    # Fetch the connection string from the configuration
-    print("Connection to Azure...")
-    conn_str = config['Azure']['deviceConnectionString']
+# Fetch the connection string from the configuration
+print("Connection to Azure...")
+conn_str = config['Azure']['deviceConnectionString']
 
-    # Create instance of the device client using the connection string
-    device_client = IoTHubDeviceClient.create_from_connection_string(conn_str)
+# Create instance of the device client using the connection string
+device_client = IoTHubDeviceClient.create_from_connection_string(conn_str)
 
-    # Connect the device client.
-    await device_client.connect()
+# Connect the device client.
+device_client.connect()
 
-    # Send a single message
-    print( "Sending message: {}".format(message) )
-    await device_client.send_message(message)
-    print("Message successfully sent!")
+# Send a single message
+print( "Synchronously sending message: {}".format(message) )
+device_client.send_message(message)
+print("Message successfully sent!")
 
-    # finally, disconnect
-    await device_client.disconnect()
-
-
-if __name__ == "__main__":
-    # asyncio.run(main())
-
-    # If using Python 3.6 or below, use the following code instead of asyncio.run(main()):
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
-    loop.close()
+# finally, disconnect
+device_client.disconnect()
