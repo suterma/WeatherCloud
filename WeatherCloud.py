@@ -37,9 +37,7 @@ msg_txt_formatted = MSG_TXT.format(temperature=temperature, humidity=humidity, l
 
 # Post the message to an azure IoT Hub
 import os
-import asyncio
-from azure.iot.device.aio import IoTHubDeviceClient
-from azure.iot.device import Message
+from azure.iot.device import IoTHubDeviceClient, Message
 
 # Create the IoT Hub Message
 message = Message(msg_txt_formatted)
